@@ -35,7 +35,8 @@ class Solution:
         '''
         len_max = 0
         ans = ''
-        # 插入' '
+        # 在两个相同的字符中间插入' '，这样就会变成单核
+        # 遍历每个字符，左右扩展
         s = self.insert(s)
         for i in range(len(s)):
             i_left = i
