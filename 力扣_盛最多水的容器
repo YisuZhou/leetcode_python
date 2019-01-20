@@ -1,0 +1,38 @@
+# 两种解法
+# 暴力解法，n^2
+class Solution:
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        ans = []
+        for i in range(len(height)-1):
+            i_h = height[i]
+            cur_max = 0
+            for j in range(i+1,len(height)):
+                cur_max = max(cur_max,min(i_h,height[j])*(j-i))
+            ans.append(cur_max)
+        return max(ans)
+# 从最宽位置开始，每次向内部移动短板
+class Solution:
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        ans = 0
+        i_left = 0
+        i_right = len(height)-1
+        
+        while i_left < i_right:
+            w = i_right-i_left
+            h = min(height[i_left],height[i_right])
+            if height[i_left] < height[i_right]:
+                i_left += 1
+            else:
+                i_right -= 1
+            ans = max(ans,w*h)
+        
+        return ans
+                
