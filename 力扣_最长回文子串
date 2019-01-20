@@ -1,0 +1,78 @@
+# Py3实现，全部超时。。。
+class Solution:
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        '''
+        方法一
+        len_max = 0
+        ans = ''
+        for i in range(len(s)):
+            last = len(s) - 1
+            while last >= i:
+                while s[last] != s[i] and last > i:
+                    last -= 1
+                if self.Ispal(s[i:last+1]) and (last-i+1) > len_max:
+                    ans =  s[i:last+1]
+                    len_max = last-i+1
+        return ans
+        '''
+        '''
+        方法二
+        if self.Ispal(s):
+            return s
+        s1 = self.longestPalindrome(s[1:])
+        s2 = self.longestPalindrome(s[:-1])
+        if len(s1) <= len(s2):
+            return s2
+        else:
+            return s1
+        '''
+        '''
+        方法三
+        '''
+        len_max = 0
+        ans = ''
+        # 插入' '
+        s = self.insert(s)
+        for i in range(len(s)):
+            i_left = i
+            i_right = i
+            while i_right<len(s) and i_left > -1 and s[i_left] == s[i_right]:
+                cur_len, cur_s = self.len(s[i_left:i_right+1])
+                if cur_len > len_max:
+                    ans = cur_s
+                    len_max = cur_len
+                i_left -= 1
+                i_right += 1
+        return ans
+    
+    def insert(self,s_in):
+        s_out = s_in
+        count = 0
+        for i in range(len(s_in)-1):
+            if s_in[i] == s_in[i+1]:
+                s_out = s_out[:i+1+count] + ' ' +s_in[i+1:]
+                count += 1
+        return s_out
+        
+        
+    def len(self,s):
+        s_out = ''
+        for i in range(len(s)):
+            if s[i] != ' ':
+                s_out = s_out + s[i]
+        return len(s_out),s_out
+        
+        
+    '''    
+    def Ispal(self,s):
+        if s == '':
+            return True
+        if len(s) == 1:
+            return True
+        else:
+            return s[0]== s[-1] and self.Ispal(s[1:-1])
+    '''
