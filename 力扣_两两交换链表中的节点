@@ -1,0 +1,38 @@
+# 注意新的头节点的保存
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def swapPairs(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        p_pre = ListNode(-1)
+        head_new = p_pre
+        count = 0
+        while head:
+            count = (count+1) % 2
+            if count == 0:
+                p_next = head.next
+                p_pre.next = head
+                head.next = p_last
+                p_pre = p_last
+
+            else:
+                p_last = head
+                p_next = head.next
+                    
+            head = p_next
+        if count == 1:
+            p_pre.next = p_last
+        else:
+            p_pre.next = None
+        return head_new.next
+                
+            
+            
+        
