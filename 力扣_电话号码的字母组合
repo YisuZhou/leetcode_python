@@ -1,0 +1,32 @@
+class Solution:
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        num_d = {}
+        num_d[2] = ['a','b','c']
+        num_d[3] = ['d','e','f']
+        num_d[4] = ['g','h','i']
+        num_d[5] = ['j','k','l']
+        num_d[6] = ['m','n','o']
+        num_d[7] = ['p','q','r','s']
+        num_d[8] = ['t','u','v']
+        num_d[9] = ['w','x','y','z']
+        
+        if len(digits) == 0:
+            return []
+        if len(digits) == 1:
+            return num_d[int(digits)]
+        else:
+            p_ans = self.letterCombinations(digits[1:])
+            c_ans = []
+            for ch in num_d[int(digits[0])]:
+                for a in p_ans:
+                    c_ans.append(ch+a)
+            return c_ans
+                    
+        
+        
+        
+        
