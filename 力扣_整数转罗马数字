@@ -1,0 +1,30 @@
+class Solution:
+    def intToRoman(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
+        roam_d = {}
+        roam_d[1] = 'I'
+        roam_d[5] = 'V'
+        roam_d[10] = 'X'
+        roam_d[50] = 'L'
+        roam_d[100] = 'C'
+        roam_d[500] = 'D'
+        roam_d[1000] = 'M'
+        roam_d[4] = 'IV'
+        roam_d[9] = 'IX'
+        roam_d[40] = 'XL'
+        roam_d[90] = 'XC'
+        roam_d[400] = 'CD'
+        roam_d[900] = 'CM'
+        
+        roam_l = [1000,900,500,400,100,90,50,40,10,9,5,4,1]
+        
+        
+        ans = ''
+        for i in roam_l:
+            a = num//i
+            ans += roam_d[i]*a
+            num = num%i
+        return ans
