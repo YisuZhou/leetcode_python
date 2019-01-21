@@ -1,0 +1,27 @@
+# 运行超时= =
+class Solution:
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        nums.sort()
+        
+        ans = []
+        for i_left in range(len(nums)-2):
+            i_mid = i_left + 1
+            i_right = len(nums)-1
+            while i_mid < i_right:
+                if nums[i_left] + nums[i_mid] + nums[i_right] == 0:
+                    if [nums[i_left],nums[i_mid],nums[i_right]] not in ans:
+                        ans.append([nums[i_left],nums[i_mid],nums[i_right]])
+                        i_mid += 1
+                        i_right -= 1
+                elif nums[i_left] + nums[i_mid] + nums[i_right] > 0:
+                    i_right -= 1
+                else:
+                    i_mid += 1
+        
+        return ans
+                    
+                        
