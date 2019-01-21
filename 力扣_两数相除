@@ -1,0 +1,27 @@
+# 又又又又又超时啦= =
+class Solution:
+    def divide(self, dividend, divisor):
+        """
+        :type dividend: int
+        :type divisor: int
+        :rtype: int
+        """
+        ans = 0
+        record = 0
+        i_flag = 0
+        j_flag = 0
+        if divisor < 0:
+            divisor = (-1)*divisor
+            i_flag = 1
+        if dividend < 0:
+            dividend = (-1)*dividend
+            j_flag = 1
+        while record + divisor <= dividend:
+            ans += 1
+            if ans < (-1)*2**31 or ans > 2**31-1:
+                return 2**31-1
+            record += divisor
+        if i_flag+j_flag == 1:
+            ans = (-1)*ans
+        return ans
+        
