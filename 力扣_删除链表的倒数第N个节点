@@ -1,0 +1,30 @@
+# 需要注意最后面条件判断的逻辑和顺序
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        p = head
+        count = 0
+        list_n = [ListNode(-1)]*(n+1)
+        while head:
+            count += 1
+            list_n.append(head)
+            list_n.pop(0)
+            head = head.next
+        if n == 1:
+            list_n[0].next = None
+        else:
+            list_n[0].next = list_n[2]
+        if n == count:
+            p = p.next
+        return p
+        
