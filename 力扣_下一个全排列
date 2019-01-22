@@ -1,0 +1,61 @@
+# 排序要自己写。。原地排
+# 注意只剩下两个数字的时候
+class Solution:
+    def nextPermutation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        self.nextlist(nums,0)
+          
+    def nextlist(self,num_list,i_left):
+        if self.isdown(num_list[i_left:]):
+            if i_left == 0:
+                return num_list.sort()
+            
+            self.quicksort(num_list,i_left,len(num_list)-1)
+            
+            cur = num_list[i_left-1]
+            for i in range(i_left,len(num_list)):
+                if num_list[i] > cur:
+                    num_list[i_left-1],num_list[i] = num_list[i],num_list[i_left-1]
+                    return num_list
+        else:
+            if len(num_list[i_left:]) == 2:
+                num_list[-1],num_list[i_left] = num_list[i_left],num_list[-1]
+                return num_list
+            else:
+                i_left += 1
+                return self.nextlist(num_list,i_left)
+    
+    def isdown(self,num_list):
+        if num_list == []:
+            return True
+        pre = num_list[0]
+        for i in num_list:
+            if i > pre:
+                return False
+            pre = i
+        return True
+    
+    def partition(self,num_list,i_left,i_right):
+        temp = i_left
+        comp = num_list[i_left]
+        while i_left < i_right:
+            while i_left < i_right and num_list[i_right] >= comp:
+                i_right -= 1
+            while i_left < i_right and num_list[i_left] <= comp:
+                i_left += 1
+            num_list[i_left],num_list[i_right] = num_list[i_right],num_list[i_left]
+        
+        num_list[temp],num_list[i_left] = num_list[i_left],num_list[temp]
+        return i_left
+                
+    def quicksort(self,num_list,i_left,i_right):
+        if i_right > i_left:
+            i_mid = self.partition(num_list,i_left,i_right)
+            self.quicksort(num_list,i_left,i_mid-1)
+            self.quicksort(num_list,i_mid+1,i_right)
+            
+        
+        
