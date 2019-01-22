@@ -1,0 +1,39 @@
+# 需要注意if else条件
+class Solution:
+    def searchRange(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        i_left = 0
+        i_right = len(nums)-1
+        left = -1
+        right = -1
+        while i_left <= i_right:
+            i_mid = (i_left + i_right) // 2
+            if nums[i_mid] == target and i_mid == 0:
+                left = 0
+            elif nums[i_mid] == target and nums[i_mid-1] != target:
+                left = i_mid
+                
+            if nums[i_mid] >= target:
+                i_right -= 1
+            else:
+                i_left += 1
+        
+        i_left = 0
+        i_right = len(nums)-1
+        while i_left <= i_right:
+            i_mid = (i_left + i_right) // 2
+            if nums[i_mid] == target and i_mid == len(nums)-1:
+                right = i_mid
+            elif nums[i_mid] == target and nums[i_mid+1] != target:
+                right = i_mid
+                
+            if nums[i_mid] > target:
+                i_right -= 1
+            else:
+                i_left += 1
+        
+        return [left, right]
