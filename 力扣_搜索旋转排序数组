@@ -1,0 +1,52 @@
+class Solution:
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        if len(nums) == 0:
+            return -1
+        i_left = 0
+        i_right = len(nums)-1
+          
+        while i_left <= i_right:
+            
+            i_mid = (i_left+i_right) // 2
+            
+            if nums[i_mid] == target:
+                return i_mid
+            if nums[i_left] == target:
+                return i_left
+            if nums[i_right] == target:
+                return i_right
+            
+            if nums[i_left] < nums[i_right]:
+                if nums[i_mid] < target:
+                    i_left = i_mid+1
+                else:
+                    i_right = i_mid -1
+                    
+            else:
+                if nums[i_mid] > nums[i_left]:
+                    if nums[i_mid] < target:
+                        i_left = i_mid + 1
+                    else:
+                        if nums[i_left] > target:
+                            i_left = i_mid + 1
+                        else:
+                            i_right = i_mid-1
+                else:
+                    if nums[i_mid] < target:
+                        if nums[i_left] > target :
+                            i_left = i_mid + 1
+                        else:
+                            i_right = i_mid -1
+                    else:
+                        i_right = i_mid -1
+        return -1
+        
+                    
+                
+            
+            
