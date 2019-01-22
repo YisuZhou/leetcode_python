@@ -1,0 +1,46 @@
+class Solution:
+    def isValidSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """
+        for i in range(9):
+            record = list(range(10))
+            for ii in board[i]:
+                if ii == '.':
+                    continue
+                if int(ii) in record:
+                    record[int(ii)] = ' '
+                else:
+                    return False
+        
+        for j in range(9):
+            record = list(range(10))
+            for jj in range(9):
+                if board[jj][j] == '.':
+                    continue
+                m = int(board[jj][j])
+                if m in record:
+                    record[m] = ' '
+                else:
+                    return False
+                
+        for ij in range(9):
+            row_3 = ij // 3
+            col_3 = ij % 3
+            record = list(range(10))
+            for row in range(row_3*3,row_3*3+3):
+                for col in range(col_3*3,col_3*3+3):
+                    if board[row][col] == '.':
+                        continue
+                    m = int(board[row][col])
+                    if m in record:
+                        record[m] = ' '
+                    else:
+                        return False
+                    
+                
+        
+        return True
+                
+        
