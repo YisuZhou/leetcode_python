@@ -1,0 +1,27 @@
+class Solution:
+    
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        self.ans = []
+        if len(nums) == 1:
+            self.ans.append(nums)
+            return self.ans
+        else:
+            self.get_arr(nums,0,len(nums))
+            return self.ans
+    
+    def get_arr(self,n,begin,end):
+        if begin >= end:
+            self.ans.append(n[:])  # 注意一定是n的拷贝
+        else:
+            i = begin
+            for j in range(begin,end):
+                n[i],n[j] = n[j],n[i]
+                self.get_arr(n,begin+1,end)
+                n[i],n[j] = n[j],n[i]
+                
+                
+    
