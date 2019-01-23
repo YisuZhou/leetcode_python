@@ -1,0 +1,44 @@
+class Solution:
+    def multiply(self, num1, num2):
+        """
+        :type num1: str
+        :type num2: str
+        :rtype: str
+        """
+        len_1 = len(num1)
+        ans_1 = 0
+        for i in range(len_1):
+            ans_1 = 10*ans_1 + self.get_num(num1[i])
+        
+        
+        len_2 = len(num2)
+        ans_2 = 0
+        for j in range(len_2):
+            ans_2 = 10*ans_2 + self.get_num(num2[j])
+            
+        return str(ans_1 * ans_2)
+        
+        
+    def get_num(self,char_n):
+        if char_n == '0':
+            return 0
+        if char_n == '1':
+            return 1
+        if char_n == '2':
+            return 2
+        if char_n == '3':
+            return 3
+        if char_n == '4':
+            return 4
+        if char_n == '5':
+            return 5
+        if char_n == '6':
+            return 6
+        if char_n == '7':
+            return 7
+        if char_n == '8':
+            return 8
+        if char_n == '9':
+            return 9
+        
+        
