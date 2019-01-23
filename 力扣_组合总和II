@@ -1,0 +1,26 @@
+class Solution:
+    def combinationSum2(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        
+        ans = []
+        for i in range(len(candidates)):
+            self.comb_sum(ans,[candidates[i]],candidates[i],candidates[i+1:],target-candidates[i])
+
+        return ans
+    
+    def comb_sum(self,ans,a,i,candidates,tar_left):
+        candidates = candidates[:]
+        if tar_left == 0:
+            a.sort()
+            if a not in ans:
+                ans.append(a)
+        else:
+            for j in range(len(candidates)):
+                if tar_left-candidates[j] >= min(min(candidates),0):
+                    self.comb_sum(ans,a+[candidates[j]],i+candidates[j],candidates[j+1:],tar_left-candidates[j])
+        
+        
