@@ -1,0 +1,29 @@
+class Solution:
+    def rotate(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: void Do not return anything, modify matrix in-place instead.
+        """
+        mask = []
+        for i in range(len(matrix)):
+            mask.append([1]*len(matrix))
+            
+        for row in range(len(matrix)):
+            for col in range(len(matrix)):
+                if mask[row][col]:
+                    m = row
+                    n = col
+                    temp = matrix[m][n]
+                    for j in range(3):
+                        matrix[m][n] = matrix[len(matrix)-1-n][m]
+                        mask[m][n] = 0
+                        t = m
+                        m = len(matrix)-1-n
+                        n = t
+                    matrix[m][n] = temp
+                    mask[m][n] = 0
+                        
+                
+                    
+        
+        
