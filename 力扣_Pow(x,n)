@@ -1,0 +1,26 @@
+# 自己写的超时，测试用例0.00001，2147483647，不超时才怪 = =
+# 直接调用 pow()可以
+# 但是应该是用分治思想吧，N分偶数和奇数
+class Solution:
+    def myPow(self, x, n):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """
+        sym = 0
+        if n < 0:
+            sym = 1
+            n = (-1)*n
+        
+        ans = 1.0
+        
+        for i in range(n):
+            ans *= x
+        
+        if sym:
+            ans = 1.0/ans
+        
+        return ans
+            
+        
